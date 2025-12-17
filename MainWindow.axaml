@@ -1,0 +1,111 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectManager"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+        x:Class="ProjectManager.MainWindow"
+        Title="Управление проектами" 
+        Width="1000" Height="600"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid RowDefinitions="Auto,*" Margin="10">
+        <TextBlock Grid.Row="0" Text="Система управления проектами" 
+                   FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+        
+        <Grid Grid.Row="1" ColumnDefinitions="300,*">
+            
+            <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" 
+                    Padding="10" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Проекты" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                    
+                    <TextBox Watermark="Название проекта" 
+                             Text="{Binding NewProjectName}" Margin="0,0,0,5"/>
+                    <Button Content="Добавить проект" 
+                            Click="AddProject_Click" Margin="0,0,0,10"/>
+                    
+                    <ListBox ItemsSource="{Binding Projects}" 
+                             SelectedItem="{Binding SelectedProject}"
+                             Height="400">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Progress, StringFormat='Прогресс: {0}%'}" 
+                                               FontSize="11" Foreground="Gray"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+            
+            <TabControl Grid.Column="1">
+                
+                <TabItem Header="Задачи">
+                    <Grid RowDefinitions="Auto,*,Auto">
+                        
+                        <StackPanel Grid.Row="0" Margin="10">
+                            <TextBlock Text="Новая задача" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBox Watermark="Название задачи" 
+                                     Text="{Binding NewTaskTitle}" Margin="0,0,0,5"/>
+                            <TextBox Watermark="Исполнитель" 
+                                     Text="{Binding NewTaskAssignee}" Margin="0,0,0,5"/>
+                            <Button Content="Добавить задачу" 
+                                    Click="AddTask_Click"/>
+                        </StackPanel>
+                        
+                        <ListBox Grid.Row="1" 
+                                 ItemsSource="{Binding CurrentTasks}"
+                                 SelectedItem="{Binding SelectedTask}"
+                                 Margin="10,0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="LightGray" BorderThickness="1" 
+                                            Padding="10" Margin="0,2">
+                                        <Grid ColumnDefinitions="30,*,150,100,80">
+                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsCompleted}" 
+                                                     IsEnabled="False"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding Title}" 
+                                                      VerticalAlignment="Center" Margin="5,0"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding AssignedTo}" 
+                                                      VerticalAlignment="Center" Margin="5,0"/>
+                                            <TextBlock Grid.Column="3" 
+                                                      Text="{Binding DueDate, StringFormat='dd.MM.yyyy'}" 
+                                                      VerticalAlignment="Center" Margin="5,0"/>
+                                            <TextBlock Grid.Column="4" Text="{Binding Priority}" 
+                                                      VerticalAlignment="Center" Margin="5,0"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                                    HorizontalAlignment="Right" Margin="10">
+                            <Button Content="Отметить выполнено/Невыполнено" 
+                                    Click="ToggleTask_Click" Margin="0,0,10,0"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                
+                <TabItem Header="Отчёты">
+                    <Grid RowDefinitions="Auto,*">
+                        <Button Grid.Row="0" Content="Сгенерировать отчёт" 
+                                Click="GenerateReport_Click" 
+                                HorizontalAlignment="Left" Margin="10"/>
+                        <TextBox Grid.Row="1" Text="{Binding ReportText}" 
+                                 IsReadOnly="True" 
+                                 TextWrapping="Wrap" 
+                                 Margin="10"
+                                 FontFamily="Consolas"/>
+                    </Grid>
+                </TabItem>
+                
+            </TabControl>
+            
+        </Grid>
+    </Grid>
+    
+</Window>
