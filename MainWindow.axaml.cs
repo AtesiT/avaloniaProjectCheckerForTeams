@@ -28,6 +28,18 @@ namespace ProjectManager
             vm?.ToggleTaskCompletion();
         }
 
+        private void DeleteTask_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = DataContext as MainWindowViewModel;
+            vm?.DeleteTask();
+        }
+
+        private void SaveTask_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = DataContext as MainWindowViewModel;
+            vm?.SaveTask();
+        }
+
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
         {
             var vm = DataContext as MainWindowViewModel;

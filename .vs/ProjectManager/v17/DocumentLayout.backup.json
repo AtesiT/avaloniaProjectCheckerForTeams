@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|d:\\keys and documents\\labs\\4 course\\projectmanager\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|solutionrelative:mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|d:\\keys and documents\\labs\\4 course\\projectmanager\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|solutionrelative:mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|d:\\keys and documents\\labs\\4 course\\projectmanager\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|solutionrelative:mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,14 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|d:\\keys and documents\\labs\\4 course\\projectmanager\\projectmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|solutionrelative:projectmanager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|d:\\keys and documents\\labs\\4 course\\projectmanager\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|solutionrelative:mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|d:\\keys and documents\\labs\\4 course\\projectmanager\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|solutionrelative:mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6C071516-C2FA-4149-807C-ADC81AB02AA5}|ProjectManager.csproj|d:\\keys and documents\\labs\\4 course\\projectmanager\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +58,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ProjectManager.csproj",
               "DocumentMoniker": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\ProjectManager.csproj",
               "RelativeDocumentMoniker": "ProjectManager.csproj",
@@ -66,31 +66,32 @@
               "RelativeToolTip": "ProjectManager.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-12-17T19:02:32.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-17T19:02:32.305Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "MainWindow.axaml",
               "DocumentMoniker": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\MainWindow.axaml",
               "RelativeDocumentMoniker": "MainWindow.axaml",
               "ToolTip": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\MainWindow.axaml",
               "RelativeToolTip": "MainWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-17T19:02:09.296Z"
+              "WhenOpened": "2025-12-17T19:02:09.296Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "MainWindow.axaml.cs",
               "DocumentMoniker": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\MainWindow.axaml.cs",
               "RelativeDocumentMoniker": "MainWindow.axaml.cs",
               "ToolTip": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\MainWindow.axaml.cs",
               "RelativeToolTip": "MainWindow.axaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAcwDAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T19:02:09.139Z"
+              "WhenOpened": "2025-12-17T19:02:09.139Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -106,26 +107,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "MainWindowViewModel.cs",
               "ToolTip": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\MainWindowViewModel.cs",
               "RelativeToolTip": "MainWindowViewModel.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAkwGsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAALcAAAAAAAAAAAAowN8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-17T19:00:55.609Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Models.cs",
               "DocumentMoniker": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\Models.cs",
               "RelativeDocumentMoniker": "Models.cs",
               "ToolTip": "D:\\Keys And Documents\\Labs\\4 Course\\ProjectManager\\Models.cs",
               "RelativeToolTip": "Models.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAowHgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-17T19:00:16.754Z",
               "EditorCaption": ""

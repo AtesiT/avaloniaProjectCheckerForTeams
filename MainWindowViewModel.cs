@@ -15,6 +15,11 @@ namespace ProjectManager
         private string _newTaskTitle = "";
         private string _newTaskAssignee = "";
         private string _reportText = "";
+        private string _editTaskTitle = "";
+        private string _editTaskAssignee = "";
+        private DateTime _editTaskDueDate = DateTime.Now;
+        private TaskPriority _editTaskPriority = TaskPriority.Medium;
+        private bool _isEditMode = false;
 
         public ObservableCollection<Project> Projects { get; set; } = new();
         public ObservableCollection<Task> CurrentTasks { get; set; } = new();
@@ -37,6 +42,7 @@ namespace ProjectManager
             {
                 _selectedTask = value;
                 OnPropertyChanged();
+                LoadTaskForEdit();
             }
         }
 
@@ -62,6 +68,36 @@ namespace ProjectManager
         {
             get => _reportText;
             set { _reportText = value; OnPropertyChanged(); }
+        }
+
+        public string EditTaskTitle
+        {
+            get => _editTaskTitle;
+            set { _editTaskTitle = value; OnPropertyChanged(); }
+        }
+
+        public string EditTaskAssignee
+        {
+            get => _editTaskAssignee;
+            set { _editTaskAssignee = value; OnPropertyChanged(); }
+        }
+
+        public DateTime EditTaskDueDate
+        {
+            get => _editTaskDueDate;
+            set { _editTaskDueDate = value; OnPropertyChanged(); }
+        }
+
+        public TaskPriority EditTaskPriority
+        {
+            get => _editTaskPriority;
+            set { _editTaskPriority = value; OnPropertyChanged(); }
+        }
+
+        public bool IsEditMode
+        {
+            get => _isEditMode;
+            set { _isEditMode = value; OnPropertyChanged(); }
         }
 
         public void AddProject()
@@ -101,9 +137,49 @@ namespace ProjectManager
             if (SelectedTask != null && SelectedProject != null)
             {
                 SelectedTask.IsCompleted = !SelectedTask.IsCompleted;
-
-                // Уведомляем проект об изменении прогресса
                 SelectedProject.NotifyProgressChanged();
+            }
+        }
+
+        public void DeleteTask()
+        {
+            if (SelectedTask != null && SelectedProject != null)
+            {
+                SelectedProject.Tasks.Remove(SelectedTask);
+                CurrentTasks.Remove(SelectedTask);
+                SelectedProject.NotifyProgressChanged();
+                SelectedTask = null;
+                IsEditMode = false;
+            }
+        }
+
+        public void SaveTask()
+        {
+            if (SelectedTask != null && !string.IsNullOrWhiteSpace(EditTaskTitle))
+            {
+                SelectedTask.Title = EditTaskTitle;
+                SelectedTask.AssignedTo = EditTaskAssignee;
+                SelectedTask.DueDate = EditTaskDueDate;
+                SelectedTask.Priority = EditTaskPriority;
+
+                // Обновляем отображение
+                OnPropertyChanged(nameof(CurrentTasks));
+            }
+        }
+
+        private void LoadTaskForEdit()
+        {
+            if (SelectedTask != null)
+            {
+                EditTaskTitle = SelectedTask.Title;
+                EditTaskAssignee = SelectedTask.AssignedTo;
+                EditTaskDueDate = SelectedTask.DueDate;
+                EditTaskPriority = SelectedTask.Priority;
+                IsEditMode = true;
+            }
+            else
+            {
+                IsEditMode = false;
             }
         }
 

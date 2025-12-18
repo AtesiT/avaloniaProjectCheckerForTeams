@@ -86,6 +86,10 @@
                                     HorizontalAlignment="Right" Margin="10">
                             <Button Content="Отметить выполнено/Невыполнено" 
                                     Click="ToggleTask_Click" Margin="0,0,10,0"/>
+                            <Button Content="Удалить задачу" 
+                                    Click="DeleteTask_Click" 
+                                    Background="#D32F2F"
+                                    Foreground="White"/>
                         </StackPanel>
                     </Grid>
                 </TabItem>
