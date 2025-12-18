@@ -68,3 +68,4 @@ D:\Keys And Documents\Labs\4 Course\ProjectManager\obj\Debug\net8.0\Avalonia\ori
 D:\Keys And Documents\Labs\4 Course\ProjectManager\obj\Debug\net8.0\ProjectM.8307BD89.Up2Date
 D:\Keys And Documents\Labs\4 Course\ProjectManager\obj\Debug\net8.0\ProjectManager.genruntimeconfig.cache
 D:\Keys And Documents\Labs\4 Course\ProjectManager\obj\Debug\net8.0\ref\ProjectManager.dll
+D:\Keys And Documents\Labs\4 Course\ProjectManager\obj\Debug\net8.0\ProjectManager.sourcelink.json

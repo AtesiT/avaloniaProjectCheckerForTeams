@@ -93,7 +93,6 @@ namespace ProjectManager
                 CurrentTasks.Add(task);
                 NewTaskTitle = string.Empty;
                 NewTaskAssignee = string.Empty;
-                OnPropertyChanged(nameof(SelectedProject));
             }
         }
 
@@ -102,8 +101,9 @@ namespace ProjectManager
             if (SelectedTask != null && SelectedProject != null)
             {
                 SelectedTask.IsCompleted = !SelectedTask.IsCompleted;
-                OnPropertyChanged(nameof(CurrentTasks));
-                OnPropertyChanged(nameof(SelectedProject));
+
+                // Уведомляем проект об изменении прогресса
+                SelectedProject.NotifyProgressChanged();
             }
         }
 
