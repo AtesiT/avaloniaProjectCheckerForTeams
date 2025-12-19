@@ -13,13 +13,9 @@ namespace ProjectManager
         private Task _selectedTask;
         private string _newProjectName = "";
         private string _newTaskTitle = "";
+        private string _newTaskDescription = "";
         private string _newTaskAssignee = "";
         private string _reportText = "";
-        private string _editTaskTitle = "";
-        private string _editTaskAssignee = "";
-        private DateTime _editTaskDueDate = DateTime.Now;
-        private TaskPriority _editTaskPriority = TaskPriority.Medium;
-        private bool _isEditMode = false;
 
         public ObservableCollection<Project> Projects { get; set; } = new();
         public ObservableCollection<Task> CurrentTasks { get; set; } = new();
@@ -42,7 +38,6 @@ namespace ProjectManager
             {
                 _selectedTask = value;
                 OnPropertyChanged();
-                LoadTaskForEdit();
             }
         }
 
@@ -58,6 +53,12 @@ namespace ProjectManager
             set { _newTaskTitle = value; OnPropertyChanged(); }
         }
 
+        public string NewTaskDescription
+        {
+            get => _newTaskDescription;
+            set { _newTaskDescription = value; OnPropertyChanged(); }
+        }
+
         public string NewTaskAssignee
         {
             get => _newTaskAssignee;
@@ -68,36 +69,6 @@ namespace ProjectManager
         {
             get => _reportText;
             set { _reportText = value; OnPropertyChanged(); }
-        }
-
-        public string EditTaskTitle
-        {
-            get => _editTaskTitle;
-            set { _editTaskTitle = value; OnPropertyChanged(); }
-        }
-
-        public string EditTaskAssignee
-        {
-            get => _editTaskAssignee;
-            set { _editTaskAssignee = value; OnPropertyChanged(); }
-        }
-
-        public DateTime EditTaskDueDate
-        {
-            get => _editTaskDueDate;
-            set { _editTaskDueDate = value; OnPropertyChanged(); }
-        }
-
-        public TaskPriority EditTaskPriority
-        {
-            get => _editTaskPriority;
-            set { _editTaskPriority = value; OnPropertyChanged(); }
-        }
-
-        public bool IsEditMode
-        {
-            get => _isEditMode;
-            set { _isEditMode = value; OnPropertyChanged(); }
         }
 
         public void AddProject()
@@ -121,13 +92,15 @@ namespace ProjectManager
                 var task = new Task
                 {
                     Title = NewTaskTitle,
+                    Description = NewTaskDescription ?? "",
                     AssignedTo = NewTaskAssignee ?? "Не назначено",
-                    DueDate = DateTime.Now.AddDays(7),
+                    DueDate = DateTime.Now,
                     Priority = TaskPriority.Medium
                 };
                 SelectedProject.Tasks.Add(task);
                 CurrentTasks.Add(task);
                 NewTaskTitle = string.Empty;
+                NewTaskDescription = string.Empty;
                 NewTaskAssignee = string.Empty;
             }
         }
@@ -149,37 +122,6 @@ namespace ProjectManager
                 CurrentTasks.Remove(SelectedTask);
                 SelectedProject.NotifyProgressChanged();
                 SelectedTask = null;
-                IsEditMode = false;
-            }
-        }
-
-        public void SaveTask()
-        {
-            if (SelectedTask != null && !string.IsNullOrWhiteSpace(EditTaskTitle))
-            {
-                SelectedTask.Title = EditTaskTitle;
-                SelectedTask.AssignedTo = EditTaskAssignee;
-                SelectedTask.DueDate = EditTaskDueDate;
-                SelectedTask.Priority = EditTaskPriority;
-
-                // Обновляем отображение
-                OnPropertyChanged(nameof(CurrentTasks));
-            }
-        }
-
-        private void LoadTaskForEdit()
-        {
-            if (SelectedTask != null)
-            {
-                EditTaskTitle = SelectedTask.Title;
-                EditTaskAssignee = SelectedTask.AssignedTo;
-                EditTaskDueDate = SelectedTask.DueDate;
-                EditTaskPriority = SelectedTask.Priority;
-                IsEditMode = true;
-            }
-            else
-            {
-                IsEditMode = false;
             }
         }
 
@@ -196,6 +138,19 @@ namespace ProjectManager
                 sb.AppendLine($"Всего задач: {project.Tasks.Count}");
                 sb.AppendLine($"Завершено: {project.Tasks.Count(t => t.IsCompleted)}");
                 sb.AppendLine($"В работе: {project.Tasks.Count(t => !t.IsCompleted)}");
+
+                if (project.Tasks.Any())
+                {
+                    sb.AppendLine("\nЗадачи:");
+                    foreach (var task in project.Tasks)
+                    {
+                        sb.AppendLine($"  • {task.Title} [{(task.IsCompleted ? "✓" : " ")}]");
+                        if (!string.IsNullOrWhiteSpace(task.Description))
+                            sb.AppendLine($"    Описание: {task.Description}");
+                        sb.AppendLine($"    Исполнитель: {task.AssignedTo} | Срок: {task.DueDate:dd.MM.yyyy} | Приоритет: {task.Priority}");
+                    }
+                }
+
                 sb.AppendLine();
             }
 
