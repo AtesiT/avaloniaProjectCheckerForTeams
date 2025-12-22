@@ -17,6 +17,13 @@ namespace ProjectManager
         private string _newTaskAssignee = "";
         private string _reportText = "";
 
+        // Поля для редактирования
+        private string _editTaskTitle = "";
+        private string _editTaskDescription = "";
+        private string _editTaskAssignee = "";
+        private DateTime _editTaskDueDate = DateTime.Now;
+        private int _editTaskPriorityIndex = 1;
+
         public ObservableCollection<Project> Projects { get; set; } = new();
         public ObservableCollection<Task> CurrentTasks { get; set; } = new();
 
@@ -38,6 +45,7 @@ namespace ProjectManager
             {
                 _selectedTask = value;
                 OnPropertyChanged();
+                LoadTaskForEdit();
             }
         }
 
@@ -69,6 +77,37 @@ namespace ProjectManager
         {
             get => _reportText;
             set { _reportText = value; OnPropertyChanged(); }
+        }
+
+        // Свойства для редактирования
+        public string EditTaskTitle
+        {
+            get => _editTaskTitle;
+            set { _editTaskTitle = value; OnPropertyChanged(); }
+        }
+
+        public string EditTaskDescription
+        {
+            get => _editTaskDescription;
+            set { _editTaskDescription = value; OnPropertyChanged(); }
+        }
+
+        public string EditTaskAssignee
+        {
+            get => _editTaskAssignee;
+            set { _editTaskAssignee = value; OnPropertyChanged(); }
+        }
+
+        public DateTime EditTaskDueDate
+        {
+            get => _editTaskDueDate;
+            set { _editTaskDueDate = value; OnPropertyChanged(); }
+        }
+
+        public int EditTaskPriorityIndex
+        {
+            get => _editTaskPriorityIndex;
+            set { _editTaskPriorityIndex = value; OnPropertyChanged(); }
         }
 
         public void AddProject()
@@ -122,6 +161,41 @@ namespace ProjectManager
                 CurrentTasks.Remove(SelectedTask);
                 SelectedProject.NotifyProgressChanged();
                 SelectedTask = null;
+            }
+        }
+
+        public void SaveTask()
+        {
+            if (SelectedTask != null && !string.IsNullOrWhiteSpace(EditTaskTitle))
+            {
+                SelectedTask.Title = EditTaskTitle;
+                SelectedTask.Description = EditTaskDescription ?? "";
+                SelectedTask.AssignedTo = EditTaskAssignee;
+                SelectedTask.DueDate = EditTaskDueDate;
+                SelectedTask.Priority = (TaskPriority)EditTaskPriorityIndex;
+
+                SelectedProject?.NotifyProgressChanged();
+                OnPropertyChanged(nameof(CurrentTasks));
+            }
+        }
+
+        private void LoadTaskForEdit()
+        {
+            if (SelectedTask != null)
+            {
+                EditTaskTitle = SelectedTask.Title;
+                EditTaskDescription = SelectedTask.Description;
+                EditTaskAssignee = SelectedTask.AssignedTo;
+                EditTaskDueDate = SelectedTask.DueDate;
+                EditTaskPriorityIndex = (int)SelectedTask.Priority;
+            }
+            else
+            {
+                EditTaskTitle = "";
+                EditTaskDescription = "";
+                EditTaskAssignee = "";
+                EditTaskDueDate = DateTime.Now;
+                EditTaskPriorityIndex = 1;
             }
         }
 

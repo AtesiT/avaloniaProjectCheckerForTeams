@@ -3,18 +3,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManager"
-        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="600"
         x:Class="ProjectManager.MainWindow"
         Title="Управление проектами" 
-        Width="1000" Height="600"
+        Width="1200" Height="600"
         WindowStartupLocation="CenterScreen">
     
     <Grid RowDefinitions="Auto,*" Margin="10">
         <TextBlock Grid.Row="0" Text="Система управления проектами" 
                    FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
         
-        <Grid Grid.Row="1" ColumnDefinitions="300,*">
+        <Grid Grid.Row="1" ColumnDefinitions="300,*,280">
             
+            <!-- Левая панель - Проекты -->
             <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" 
                     Padding="10" Margin="0,0,10,0">
                 <StackPanel>
@@ -41,11 +42,12 @@
                 </StackPanel>
             </Border>
             
+            <!-- Центральная панель - Задачи и отчёты -->
             <TabControl Grid.Column="1">
                 
-                               <TabItem Header="Задачи">
+                <TabItem Header="Задачи">
                     <Grid RowDefinitions="Auto,*,Auto">
-        
+                        
                         <StackPanel Grid.Row="0" Margin="10">
                             <TextBlock Text="Новая задача" FontWeight="Bold" Margin="0,0,0,5"/>
                             <TextBox Watermark="Название задачи" 
@@ -61,7 +63,7 @@
                             <Button Content="Добавить задачу" 
                                     Click="AddTask_Click"/>
                         </StackPanel>
-        
+                        
                         <ListBox Grid.Row="1" 
                                  ItemsSource="{Binding CurrentTasks}"
                                  SelectedItem="{Binding SelectedTask}"
@@ -107,7 +109,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-        
+                        
                         <StackPanel Grid.Row="2" Orientation="Horizontal" 
                                     HorizontalAlignment="Right" Margin="10">
                             <TextBlock Text="Выберите задачу из списка" 
@@ -142,6 +144,51 @@
                 </TabItem>
                 
             </TabControl>
+            
+            <!-- Правая панель - Редактирование задачи -->
+            <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1" 
+                    Padding="10" Margin="10,0,0,0"
+                    IsVisible="{Binding SelectedTask, Converter={x:Static local:MainWindow.NotNullConverter}}">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="Редактирование задачи" 
+                                   FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
+                        
+                        <TextBlock Text="Название:" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding EditTaskTitle}" 
+                                 Margin="0,0,0,10"/>
+                        
+                        <TextBlock Text="Описание:" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding EditTaskDescription}" 
+                                 Height="80"
+                                 TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 Margin="0,0,0,10"/>
+                        
+                        <TextBlock Text="Исполнитель:" Margin="0,0,0,5"/>
+                        <TextBox Text="{Binding EditTaskAssignee}" 
+                                 Margin="0,0,0,10"/>
+                        
+                        <TextBlock Text="Срок выполнения:" Margin="0,0,0,5"/>
+                        <CalendarDatePicker SelectedDate="{Binding EditTaskDueDate}" 
+                                            Margin="0,0,0,10"/>
+                        
+                        <TextBlock Text="Приоритет:" Margin="0,0,0,5"/>
+                        <ComboBox SelectedIndex="{Binding EditTaskPriorityIndex}" 
+                                  Margin="0,0,0,15">
+                            <ComboBoxItem Content="Низкий (Low)" />
+                            <ComboBoxItem Content="Средний (Medium)" />
+                            <ComboBoxItem Content="Высокий (High)" />
+                            <ComboBoxItem Content="Критический (Critical)" />
+                        </ComboBox>
+                        
+                        <Button Content="Сохранить изменения" 
+                                Click="SaveTask_Click"
+                                Background="#4CAF50"
+                                Foreground="White"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
             
         </Grid>
     </Grid>

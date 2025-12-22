@@ -1,4 +1,4 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Data.Converters;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -49,6 +49,12 @@ namespace ProjectManager
         {
             var vm = DataContext as MainWindowViewModel;
             vm?.DeleteTask();
+        }
+
+        private void SaveTask_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = DataContext as MainWindowViewModel;
+            vm?.SaveTask();
         }
 
         private void GenerateReport_Click(object sender, RoutedEventArgs e)
