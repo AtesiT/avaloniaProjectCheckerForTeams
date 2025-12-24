@@ -124,6 +124,16 @@ namespace ProjectManager
             }
         }
 
+        public void DeleteProject()
+        {
+            if (SelectedProject != null)
+            {
+                Projects.Remove(SelectedProject);
+                SelectedProject = null;
+                CurrentTasks.Clear();
+            }
+        }
+
         public void AddTask()
         {
             if (SelectedProject != null && !string.IsNullOrWhiteSpace(NewTaskTitle))

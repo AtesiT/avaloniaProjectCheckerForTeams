@@ -18,17 +18,19 @@
             <!-- Левая панель - Проекты -->
             <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" 
                     Padding="10" Margin="0,0,10,0">
-                <StackPanel>
-                    <TextBlock Text="Проекты" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Проекты" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+                        
+                        <TextBox Watermark="Название проекта" 
+                                 Text="{Binding NewProjectName}" Margin="0,0,0,5"/>
+                        <Button Content="Добавить проект" 
+                                Click="AddProject_Click" Margin="0,0,0,10"/>
+                    </StackPanel>
                     
-                    <TextBox Watermark="Название проекта" 
-                             Text="{Binding NewProjectName}" Margin="0,0,0,5"/>
-                    <Button Content="Добавить проект" 
-                            Click="AddProject_Click" Margin="0,0,0,10"/>
-                    
-                    <ListBox ItemsSource="{Binding Projects}" 
-                             SelectedItem="{Binding SelectedProject}"
-                             Height="400">
+                    <ListBox Grid.Row="1" 
+                             ItemsSource="{Binding Projects}" 
+                             SelectedItem="{Binding SelectedProject}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="5">
@@ -39,7 +41,16 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </StackPanel>
+                    
+                    <!-- Кнопка удаления проекта -->
+                    <Button Grid.Row="2" 
+                            Content="Удалить выбранный проект" 
+                            Click="DeleteProject_Click"
+                            Background="#D32F2F"
+                            Foreground="White"
+                            Margin="0,10,0,0"
+                            IsEnabled="{Binding SelectedProject, Converter={x:Static local:MainWindow.NotNullConverter}}"/>
+                </Grid>
             </Border>
             
             <!-- Центральная панель - Задачи и отчёты -->

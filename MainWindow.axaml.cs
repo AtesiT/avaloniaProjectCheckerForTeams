@@ -33,6 +33,12 @@ namespace ProjectManager
             vm?.AddProject();
         }
 
+        private void DeleteProject_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = DataContext as MainWindowViewModel;
+            vm?.DeleteProject();
+        }
+
         private void AddTask_Click(object sender, RoutedEventArgs e)
         {
             var vm = DataContext as MainWindowViewModel;
